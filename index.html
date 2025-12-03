@@ -310,10 +310,10 @@ function shuffleArray(array) {
 function create_distractor_block(set_id) {
   const math_problems = [];
   for (let i = 0; i < 10; i++) {
-    const n1 = randInt(10, 99);
-    const n2 = randInt(10, 99);
+    const n1 = randInt(1, 20);
+    const n2 = randInt(1, 20);
     math_problems.push({
-      prompt: `<p class="text-lg">What is the sum of ${n1} and ${n2}?</p>`,
+      prompt: `<p class="text-lg">What is ${n1}+${n2}?</p>`,
       name: `math_${i}`,
       placeholder: ""
     });
@@ -326,7 +326,7 @@ function create_distractor_block(set_id) {
       <h2 class="text-2xl font-bold text-red-600">3-Minute Distractor Task</h2>
       <p>Solve as many math problems as you can.</p>
     `,
-    trial_duration: 180000,
+    trial_duration: 60000,
     data: {block_type:"distractor", set:set_id}
   };
 }
