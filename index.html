@@ -412,26 +412,18 @@ const jsPsych = initJsPsych({
     
     console.log("DATA TO SEND (JSON body):", dataToSend);
     
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyL5RHR0EIDoHSs6vNOTFhf8sU4ItYpzpCgS511FUtcFMaetIEFgLBlbadRnnK3e7y4AQ/exec';
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwPyFw4HihXNMXW2y2xIS29G8ITQjRUzuoLEuzebHl-EOhTAjmYfq0FVJmb7h4tRvcQPw/exec';
     
     console.log("Sending to URL:", SCRIPT_URL);
     
     fetch(SCRIPT_URL, {
       method: 'POST',
-      
-      // *** THE CRITICAL CHANGE ***
-      // We are forcing the browser to send a simple POST request without following redirects,
-      // and defining the content type so Apps Script knows what to expect.
-      mode: 'no-cors', // We must use no-cors when returning a non-simple response
-      redirect: 'manual', // Do not follow redirects (prevents POST -> GET conversion)
-      headers: {
-        'Content-Type': 'application/json', // Tell Apps Script we're sending JSON
-      },
+      // CRITICAL: We only include the method and the body.
+      // This forces the browser to send a simple POST request.
       body: JSON.stringify(dataToSend)
     }).then(response => {
-      // In manual redirect/no-cors mode, the response status is often 0 or 'opaque', 
-      // but the data transmission should succeed if the deployment is correct.
-      console.log('Response received (status may be opaque, check sheet):', response.type);
+      // In this mode, the response is usually opaque (browser can't read it)
+      console.log('Response received (status is usually opaque):', response.type);
       allData.localSave("csv", "serial_position_data.csv");
     }).catch(error => {
       console.error('ERROR sending data:', error);
