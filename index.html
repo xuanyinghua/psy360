@@ -265,8 +265,7 @@ const jsPsych = initJsPsych({
     });
     
     // Send to Google Sheets
-    const SCRIPT_URL = 'YOUR_GOOGLE_SCRIPT_URL_HERE'; // Replace with your script URL
-    
+    const SCRIPT_URL = 'https://script.google.com/a/macros/princeton.edu/s/AKfycbyBIZG1fxgm6zz-8b5CydZ7SE_7bJ156lIFljy99qKkWVWGN2nqEhY64MSY-kUox7tj_g/exec'; // Replace with your Google Apps Script URL    
     fetch(SCRIPT_URL, {
       method: 'POST',
       mode: 'no-cors',
