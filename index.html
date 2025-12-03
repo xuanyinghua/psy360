@@ -72,92 +72,111 @@ if (typeof initJsPsych === 'undefined') {
 const NFRD_SETS = [
   {
     id: 'set_A',
-    title: 'Passage Set A: The Antarctic Expedition',
+    title: 'Passage A: Joe Matson Baseball Story',
     passage: `
       <div class="passage-container">
-        <h3 class="text-xl font-semibold mb-3 text-blue-700">The Discovery of the Antarctic Expedition</h3>
-        <p class="mb-4 text-gray-800"><span class="font-bold">Primacy Section:</span> The early expedition set out with the primary goal of reaching the South Pole. They had only five months to complete their journey before the harsh winter would make travel impossible.</p>
-        <p class="mb-4 text-gray-800"><span class="font-bold">Middle Section:</span> Dr. Finch served as the chief medical officer and often played the harmonica to boost morale during the long, dark nights.</p>
-        <p class="mb-4 text-gray-800"><span class="font-bold">Recency Section:</span> Eventually, they were rescued by a Chilean tugboat named Yelcho and landed at Grytviken to recover from their ordeal.</p>
+        <h3 class="text-xl font-semibold mb-3 text-blue-700">Joe Matson Baseball Story</h3>
+        <p class="mb-4 text-gray-800">"Whew!" whistled Joe Matson, the astonishment on his bronzed face being indicated by his surprised exclamation of: "Well, what do you know about that, Sis?"</p>
+        <p class="mb-4 text-gray-800">"What is it, Joe?" asked his sister Clara, as she looked up from a letter she was reading to see her brother staring at a sheet of paper he had just withdrawn from an envelope, for the morning mail had been delivered a few minutes before. "What is it?" the girl went on, laying aside her own correspondence. "Is it anything serious—anything about father's business? Don't tell me there is more trouble, Joe!"</p>
+        <p class="mb-4 text-gray-800">"I'm not going to, Clara. It isn't trouble, but, if what he says is true, it's going to make a big difference to me," and Joe looked out of the window, across a snowy expanse of yard, and gazed at, without consciously seeing, a myriad of white flakes swirling down through the wintry air.</p>
+        <p class="mb-4 text-gray-800">"No, it isn't exactly trouble," went on Joe, "and I suppose I ought to be corkingly glad of it; but I hadn't counted on leaving the Central Baseball League quite so soon."</p>
+        <p class="mb-4 text-gray-800">"Oh, Joe! Have you lost your place?" exclaimed Clara. "And just after you have done so well, too; and helped them win the pennant! I call that a shame! I thought baseball men were better 'sports' than that."</p>
+        <p class="mb-4 text-gray-800">Joe's arm accidentally knocked over a jug of water his mother was carrying. After cleaning up, Joe explained the letter was from Mr. Gregory, manager of the Pittston team, saying that the St. Louis Nationals (Cardinals) were considering drafting him to their major league team.</p>
+        <p class="mb-4 text-gray-800">Joe explained to his mother how the draft system worked in baseball, and mentioned that doing well in St. Louis could eventually lead to opportunities with teams like the New York Giants or the Philadelphia Athletics.</p>
+        <p class="mb-4 text-gray-800">Joe then opened another letter - from Mabel Varley, saying she and her brother Reggie were coming to visit that very day on the afternoon express train.</p>
+        <p class="mb-4 text-gray-800">"I've never met them," observed Clara. Joe decided to go to the station to meet them, despite the snow storm.</p>
+        <p class="mb-4 text-gray-800">At the station, the station master told Joe: "Your train won't be in today, and maybe not for several days. The train is stalled—snowed in at Deep Rock Cut, five miles above here, and there's no chance of getting her out."</p>
+        <p class="mb-4 text-gray-800">"Great Scott!" cried Joe. "The express snowed in! Why, I've got friends on that train!"</p>
         <p class="text-sm text-gray-500">*** End of Passage ***</p>
       </div>
     `,
     questions: [
-      { prompt: 'What was the primary goal of the expedition?', required: true, name: 'A_q1', data: { position: 'primacy', correct_answer: 'South Pole'} },
-      { prompt: 'How long did they have to complete the journey?', required: true, name: 'A_q2', data: { position: 'primacy', correct_answer: 'five months'} },
-      { prompt: 'Who was the chief medical officer?', required: true, name: 'A_q3', data: { position: 'middle', correct_answer: 'Dr. Finch'} },
-      { prompt: 'What did the doctor often play?', required: true, name: 'A_q4', data: { position: 'middle', correct_answer: 'harmonica'} },
-      { prompt: 'What was the name of the Chilean tugboat?', required: true, name: 'A_q5', data: { position: 'recency', correct_answer: 'Yelcho'} },
-      { prompt: 'Where did they land after rescue?', required: true, name: 'A_q6', data: { position: 'recency', correct_answer: 'Grytviken'} }
+      { prompt: 'What is Joe holding when Clara first asks him what\'s wrong?', required: true, name: 'A_q1', data: { position: 'primacy', correct_answer: 'A letter'} },
+      { prompt: 'Joe told Clara he hadn\'t counted on leaving which baseball league so soon?', required: true, name: 'A_q2', data: { position: 'primacy', correct_answer: 'Central Baseball League'} },
+      { prompt: 'What object does Joe accidentally knock?', required: true, name: 'A_q3', data: { position: 'primacy', correct_answer: 'A jug of water'} },
+      { prompt: 'From whom is the important letter Joe has been reading?', required: true, name: 'A_q4', data: { position: 'middle', correct_answer: 'Mr. Gregory'} },
+      { prompt: 'Which major league team is considering drafting Joe?', required: true, name: 'A_q5', data: { position: 'middle', correct_answer: 'St. Louis Nationals/Cardinals'} },
+      { prompt: 'Joe hoped that doing well in St. Louis would line him up for a place on the New York Giants or which other team?', required: true, name: 'A_q6', data: { position: 'middle', correct_answer: 'Philadelphia Athletics'} },
+      { prompt: 'Who is traveling with Mabel Varley?', required: true, name: 'A_q7', data: { position: 'recency', correct_answer: 'Her brother Reggie'} },
+      { prompt: 'What is the name of the place where the train is stalled?', required: true, name: 'A_q8', data: { position: 'recency', correct_answer: 'Deep Rock Cut'} },
+      { prompt: 'What kind of weather caused the delay?', required: true, name: 'A_q9', data: { position: 'recency', correct_answer: 'Snow'} }
     ]
   },
   {
     id: 'set_B',
-    title: 'Passage Set B: The Ancient Library of Alexandria',
+    title: 'Passage B: Kennedy Family Story',
     passage: `
       <div class="passage-container">
-        <h3 class="text-xl font-semibold mb-3 text-blue-700">The Glory of the Ancient Library</h3>
-        <p class="mb-4 text-gray-800"><span class="font-bold">Primacy Section:</span> The library was founded by Ptolemy I Soter around 300 BCE. Scholars traveled for seven days to reach it.</p>
-        <p class="mb-4 text-gray-800"><span class="font-bold">Middle Section:</span> Eratosthenes calculated the circumference of Earth and preferred to be called a "lover of wisdom."</p>
-        <p class="mb-4 text-gray-800"><span class="font-bold">Recency Section:</span> The institution was called the Mouseion and declined around the 4th century CE.</p>
+        <h3 class="text-xl font-semibold mb-3 text-blue-700">Kennedy Family Story</h3>
+        <p class="mb-4 text-gray-800">I grew up in Providence, Rhode Island, and for my entire childhood, we were never more than twenty miles away from the core of our universe, the Kennedys. We were Irish; they were Irish. We were Catholic; they were Catholic.</p>
+        <p class="mb-4 text-gray-800">Every year during the seventies, my four aunts would take me and my two cousins on their dream vacation: a rented beach house in Hyannis on the very cove sharing beachfront with the Kennedy Compound.</p>
+        <p class="mb-4 text-gray-800">My aunts would sit on the beach all day with binoculars, spying on the Kennedys. They would have conversations like: "Ah, they got Rose out walking. Ethel looks drawn." Then Aunt Momo would calculate: "Well let's see. Jack died in sixty-three when she was seventy-four, and Rose's birthday was two weeks last Thursday, and Joe died in sixty-nine, making her a widow at eighty-one. So eighty-five."</p>
+        <p class="mb-4 text-gray-800">While my aunts watched, nobody noticed that we kids had gotten into a tiny, plastic, half-inflated boat with no oars or life vests, and drifted out into the open sea. We were rescued by David and Michael Kennedy in their power boat.</p>
+        <p class="mb-4 text-gray-800">When the Kennedy boys brought us back to shore, our aunts were freaking out but trying to act normal in front of the Kennedys. My Aunt Gurt started yelling addresses: "Ilene and Kevin, 275 Hooper Street! Mikayla, 180 Asylum Road!" My Aunt Momo took on a Kennedy-esque way of speaking, sort of halfway between Katharine Hepburn and the Queen of England.</p>
+        <p class="mb-4 text-gray-800">As punishment, we had to stay on the beach. After complaining, my Aunt Pat said we could go in the water but only up to our knees. We started having chicken fights in the shallow water.</p>
+        <p class="mb-4 text-gray-800">Then my Uncle Al came to play chicken fights with us. I accidentally kicked the side of his head really hard, and his eyeball popped out, fell into the water, and sank.</p>
+        <p class="mb-4 text-gray-800">We had no idea Uncle Al had a fake eye! My Aunt Pat was hysterically screaming because that eyeball cost top dollar. It was a special magnetized eye so it could keep up with the other one.</p>
+        <p class="mb-4 text-gray-800">I went back into the water and started searching through the sand. Suddenly, there was an eyeball in my palm staring right at me. I screamed and dropped it. But now we knew it was possible to find it. After about an hour, my cousin Kevin found the eye and held it up in triumph.</p>
+        <p class="mb-4 text-gray-800">Uncle Al washed it off and popped it back in. Vacation was back on. But then I noticed that David and Michael Kennedy had been watching the entire episode from the beach.</p>
         <p class="text-sm text-gray-500">*** End of Passage ***</p>
       </div>
     `,
     questions: [
-      { prompt: 'Who founded the library?', required: true, name: 'B_q1', data:{position:'primacy',correct_answer:'Ptolemy I Soter'} },
-      { prompt: 'How many days did scholars travel?', required: true, name: 'B_q2', data:{position:'primacy',correct_answer:'seven'} },
-      { prompt: 'What did Eratosthenes calculate?', required: true, name:'B_q3',data:{position:'middle',correct_answer:'circumference of the Earth'} },
-      { prompt: 'What title did he prefer?', required:true, name:'B_q4',data:{position:'middle',correct_answer:'lover of wisdom'} },
-      { prompt: 'What was the institution called?', required:true,name:'B_q5',data:{position:'recency',correct_answer:'Mouseion'} },
-      { prompt: 'Around what century did it decline?', required:true,name:'B_q6',data:{position:'recency',correct_answer:'4th century CE'} }
+      { prompt: 'What state did the narrator grow up in?', required: true, name: 'B_q1', data: {position:'primacy', correct_answer:'Rhode Island'} },
+      { prompt: 'What beach town did the narrator\'s aunts vacation in each summer?', required: true, name: 'B_q2', data: {position:'primacy', correct_answer:'Hyannis'} },
+      { prompt: 'As calculated by Aunt Momo, how old was Rose Kennedy?', required: true, name: 'B_q3', data: {position:'primacy', correct_answer:'85'} },
+      { prompt: 'Aunt Gurt yelled addresses when freaked out. "Ilene and Kevin, 275 Hooper Street! Mikayla, 180 ____ Road!" What word fills the blank?', required: true, name: 'B_q4', data: {position:'middle', correct_answer:'Asylum'} },
+      { prompt: 'Aunt Momo took on a Kennedy-esque way of speaking, halfway between Katharine Hepburn and which historical figure?', required: true, name: 'B_q5', data: {position:'middle', correct_answer:'Queen of England'} },
+      { prompt: 'What game were the kids playing when the accident with Uncle Al happened?', required: true, name: 'B_q6', data: {position:'middle', correct_answer:'Chicken fight'} },
+      { prompt: 'The fake eye was described as being special because of what property?', required: true, name: 'B_q7', data: {position:'recency', correct_answer:'Magnetic/magnetized'} },
+      { prompt: 'Which cousin eventually found the missing eye?', required: true, name: 'B_q8', data: {position:'recency', correct_answer:'Kevin'} },
+      { prompt: 'Which two Kennedys witnessed the entire incident from the beach?', required: true, name: 'B_q9', data: {position:'recency', correct_answer:'David and Michael'} }
     ]
   },
   {
     id: 'set_C',
-    title: 'Passage Set C: The Invention of the Printing Press',
+    title: 'Passage C: Oregon Trail Story',
     passage: `
       <div class="passage-container">
-        <h3 class="text-xl font-semibold mb-3 text-blue-700">Gutenberg's Revolution</h3>
-        <p class="mb-4 text-gray-800"><span class="font-bold">Primacy Section:</span> Johannes Gutenberg invented the printing press, and the first major text was the Gutenberg Bible.</p>
-        <p class="mb-4 text-gray-800"><span class="font-bold">Middle Section:</span> The movable type was made from lead, tin, and antimony, allowing correction by replacing individual letters.</p>
-        <p class="mb-4 text-gray-800"><span class="font-bold">Recency Section:</span> The ink was based on olive oil, and by 1500, presses existed in over 250 cities.</p>
+        <h3 class="text-xl font-semibold mb-3 text-blue-700">Oregon Trail Story</h3>
+        <p class="mb-4 text-gray-800">It's the last unit of the year; I'm teaching third grade. The last unit is the Oregon Trail. I would create a world and run it like a puppet master. But now this is the Oregon Trail, a serious time. Two thousand miles across the United States—which weren't the United States yet—across the Rockies, leaving everything they know, risking everything they have.</p>
+        <p class="mb-4 text-gray-800">I took my class on a forty-block walk in Manhattan, about two miles, so they could feel what it was like. Alex Bacon said he wouldn't have had to walk because he would have ridden in the wagon. I explained that children never rode in the wagons.</p>
+        <p class="mb-4 text-gray-800">I designed a game combining the Oregon Trail video game with Dungeons and Dragons dice mechanics. Every day I would tell them what happened on the trail, they'd make choices, and we'd roll dice to see if they succeeded or failed.</p>
+        <p class="mb-4 text-gray-800">At some point, they met a snake oil salesman who offered to sell them an elixir. They decided to buy it, but when we rolled, they discovered it was a con and they lost a day of travel throwing up.</p>
+        <p class="mb-4 text-gray-800">As we approached the Rockies, I decided to give them a brush with death. I set the scene: "In the early morning light, on a Rocky Mountain pass, a wagon hits a rock and is overturned. Someone is trapped beneath the wagon."</p>
+        <p class="mb-4 text-gray-800">We rolled to find out who it was: Katie, whose Oregon Trail name was Katherine Chubbuck. She rolled and got free, but her legs were infected.</p>
+        <p class="mb-4 text-gray-800">She rolled again and the infection got worse. She looked at me and said, "Did I die?" I was in trouble - I hadn't planned this far ahead.</p>
+        <p class="mb-4 text-gray-800">Then from the back of the class, Ellis, whose Oregon Trail name was Dr. Ellis Chapman, said, "Wait, I'm a doctor!" I told Katie, "The only way you die is if you roll a six." Katie rolled a three and survived.</p>
+        <p class="mb-4 text-gray-800">After that near-death experience, I made the rest of the journey much safer. When we heard animal noises, instead of danger, I said it was a baby animal with a broken leg. We rolled to find out what species - it was a baby wolf. They named him Yenny the Benny.</p>
+        <p class="mb-4 text-gray-800">We got to Oregon in record time. About a year later, I ran into Katie on Broadway. She was in ninth grade. The first thing she said to me was, "Do you remember when I almost died on the Oregon Trail?"</p>
         <p class="text-sm text-gray-500">*** End of Passage ***</p>
       </div>
     `,
     questions: [
-      { prompt:'Who invented the printing press?', required:true, name:'C_q1', data:{position:'primacy',correct_answer:'Johannes Gutenberg'} },
-      { prompt:'What was the first major work printed?', required:true,name:'C_q2',data:{position:'primacy',correct_answer:'Gutenberg Bible'} },
-      { prompt:'What metals were used for movable type?', required:true,name:'C_q3',data:{position:'middle',correct_answer:'lead, tin, and antimony'} },
-      { prompt:'What allowed correction in printing?', required:true,name:'C_q4',data:{position:'middle',correct_answer:'replacing individual letters'} },
-      { prompt:'What was the ink base?', required:true,name:'C_q5',data:{position:'recency',correct_answer:'olive oil'} },
-      { prompt:'How many cities had presses by 1500?', required:true,name:'C_q6',data:{position:'recency',correct_answer:'over 250'} }
-    ]
-  },
-  {
-    id: 'set_D',
-    title: 'Passage Set D: The Construction of the Panama Canal',
-    passage: `
-      <div class="passage-container">
-        <h3 class="text-xl font-semibold mb-3 text-blue-700">Connecting the Oceans</h3>
-        <p class="mb-4 text-gray-800"><span class="font-bold">Primacy Section:</span> The French were first to attempt construction, led by Ferdinand de Lesseps, attempting a sea-level canal.</p>
-        <p class="mb-4 text-gray-800"><span class="font-bold">Middle Section:</span> Disease was the primary obstacle. Colonel William C. Gorgas implemented mosquito control measures.</p>
-        <p class="mb-4 text-gray-800"><span class="font-bold">Recency Section:</span> The Gatun Locks raised ships 85 feet, and the first vessel through was the SS Ancon.</p>
-        <p class="text-sm text-gray-500">*** End of Passage ***</p>
-      </div>
-    `,
-    questions: [
-      { prompt:'Who led the French attempt?',required:true,name:'D_q1',data:{position:'primacy',correct_answer:'Ferdinand de Lesseps'}},
-      { prompt:'What kind of canal did they attempt?',required:true,name:'D_q2',data:{position:'primacy',correct_answer:'sea-level canal'}},
-      { prompt:'Who implemented mosquito control?',required:true,name:'D_q3',data:{position:'middle',correct_answer:'Colonel William C. Gorgas'}},
-      { prompt:'What was the primary obstacle?',required:true,name:'D_q4',data:{position:'middle',correct_answer:'disease'}},
-      { prompt:'How many feet did the Gatun Locks raise ships?',required:true,name:'D_q5',data:{position:'recency',correct_answer:'85 feet'}},
-      { prompt:'What was the first vessel through?',required:true,name:'D_q6',data:{position:'recency',correct_answer:'SS Ancon'}}
+      { prompt: 'Which grade is the narrator teaching?', required: true, name: 'C_q1', data: {position:'primacy', correct_answer:'Third grade'} },
+      { prompt: 'How long was the historical Oregon Trail?', required: true, name: 'C_q2', data: {position:'primacy', correct_answer:'Two thousand miles'} },
+      { prompt: 'How many blocks long in Manhattan was the simulated walk?', required: true, name: 'C_q3', data: {position:'primacy', correct_answer:'Forty'} },
+      { prompt: 'What is the occupation of the conman who sold them elixir?', required: true, name: 'C_q4', data: {position:'middle', correct_answer:'Snake oil salesman'} },
+      { prompt: 'What is the name of the dangerous mountain range?', required: true, name: 'C_q5', data: {position:'middle', correct_answer:'Rockies/Rocky Mountains'} },
+      { prompt: 'Who was trapped beneath the wagon?', required: true, name: 'C_q6', data: {position:'middle', correct_answer:'Katie'} },
+      { prompt: 'Which girl was the doctor?', required: true, name: 'C_q7', data: {position:'recency', correct_answer:'Ellis'} },
+      { prompt: 'What number did Katie roll in the end?', required: true, name: 'C_q8', data: {position:'recency', correct_answer:'Three'} },
+      { prompt: 'Which baby animal was adopted?', required: true, name: 'C_q9', data: {position:'recency', correct_answer:'Wolf/Yenny the Benny'} }
     ]
   }
 ];
 
 function randInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function shuffleArray(array) {
+  const newArray = [...array];
+  for (let i = newArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+  }
+  return newArray;
 }
 
 function create_distractor_block(set_id) {
@@ -196,9 +215,12 @@ function create_full_trial_sequence(set_data) {
     data: { block_type:"reading", set:set_data.id }
   };
 
+  // Randomize question order
+  const shuffled_questions = shuffleArray(set_data.questions);
+
   const question_block = {
     type: jsPsychSurveyText,
-    questions: set_data.questions,
+    questions: shuffled_questions,
     preamble: `
       <h2 class="text-2xl font-bold text-red-700 mb-3">Recall Test</h2>
       <p class="mb-4">Answer from memory only.</p>
@@ -263,6 +285,7 @@ const jsPsych = initJsPsych({
   }
 });
 
+// Select 2 random passages from the 3 available
 const selected_sets = jsPsych.randomization.sampleWithoutReplacement(NFRD_SETS, 2);
 
 const timeline = [
