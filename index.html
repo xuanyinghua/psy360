@@ -403,19 +403,23 @@ const jsPsych = initJsPsych({
     console.log("DATA TO SEND:", dataToSend);
     
     // Send to Google Sheets
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxrLoFHVHVa4DFMa5ksM5YaXN2o3uqQOMw7aGQHRJ8hy03T7szjmtuqS5U6lsuWhLrDaQ/exec';
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwvegcQtjSUkG2tfV1MSm1i-gsTcOrw4lRPj727g6botJBfrMuo9CK5gE1IoC5aFIh_yg/exec';
     
     console.log("Sending to URL:", SCRIPT_URL);
     
+    // Convert the data object into a URL-encoded string payload
+    const payload = new URLSearchParams({
+        data: JSON.stringify(dataToSend)
+    });
+    
+    console.log("Sending Payload:", payload.toString());
+
     fetch(SCRIPT_URL, {
-      redirect: 'follow',
       method: 'POST',
-      headers: {
-        'Content-Type': 'text/plain;charset=utf-8',
-      },
-      body: JSON.stringify(dataToSend)
+      // Headers are NOT required for this simple POST type
+      body: payload 
     }).then(response => {
-      console.log('Response received:', response);
+      console.log('Response received (check sheet):', response);
       allData.localSave("csv", "serial_position_data.csv");
     }).catch(error => {
       console.error('ERROR sending data:', error);
