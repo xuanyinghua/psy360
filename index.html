@@ -431,20 +431,15 @@ const timeline = [
     choices: [" "],
     stimulus: `
       <h2 class="text-2xl font-bold mb-4">Instructions</h2>
-      <p class="mb-3">You will read two passages and answer recall questions.</p>
+      <p class="mb-3">You will read one passage and answer recall questions.</p>
       <p>Press SPACE to begin.</p>
     `
   },
   create_full_trial_sequence(selected_sets[0]),
   {
     type: jsPsychHtmlKeyboardResponse,
-    choices: [" "],
-    stimulus: `<h2 class="text-xl font-bold text-green-600 mb-3">Passage 1 Complete</h2><p>Press SPACE for Passage 2.</p>`
-  },
-  create_full_trial_sequence(selected_sets[1]),
-  {
-    type: jsPsychHtmlKeyboardResponse,
-    stimulus: `<h2 class="text-2xl font-bold text-green-700 mb-3">Thank you!</h2><p>The experiment is complete. Your data has been saved.</p>`
+    stimulus: `<h2 class="text-2xl font-bold text-green-700 mb-3">Thank you!</h2><p>The experiment is complete. Your data has been saved.</p>`,
+    choices: "NO_KEYS"
   }
 ];
 
