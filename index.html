@@ -382,13 +382,13 @@ const jsPsych = initJsPsych({
     
     // Filter for question responses
     const questionTrials = allData.filter({block_type: 'questions'});
-    console.log("Question trials:", questionTrials.values());
     
     // Prepare data to send
     const dataToSend = {
       participant_id: 'P' + Date.now(),
       timestamp: new Date().toISOString(),
-      passage_shown: selected_sets[0].id
+      // Use this method to safely retrieve the ID of the set shown:
+      passage_shown: allData.filter({block_type: 'reading'}).values()[0].set
     };
     
     // Add all question responses
@@ -400,34 +400,34 @@ const jsPsych = initJsPsych({
       }
     });
     
-    console.log("DATA TO SEND:", dataToSend);
-    
-    // Send to Google Sheets
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwvegcQtjSUkG2tfV1MSm1i-gsTcOrw4lRPj727g6botJBfrMuo9CK5gE1IoC5aFIh_yg/exec';
-    
-    console.log("Sending to URL:", SCRIPT_URL);
-    
-    // Convert the data object into a URL-encoded string payload
+    // --- START OF CRITICAL FIX ---
+    // 1. Convert the data object into a URL-encoded string payload
     const payload = new URLSearchParams({
         data: JSON.stringify(dataToSend)
     });
     
-    console.log("Sending Payload:", payload.toString());
-
+    console.log("DATA TO SEND (as payload):", payload.toString());
+    
+    // Send to Google Sheets
+    // **NOTE: Replace this SCRIPT_URL with your verified, current URL**
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxrLoFHVHVa4DFMa5ksM5YaXN2o3uqQOMw7aGQHRJ8hy03T7szjmtuqS5U6lsuWhLrDaQ/exec';
+    
+    console.log("Sending to URL:", SCRIPT_URL);
+    
     fetch(SCRIPT_URL, {
       method: 'POST',
-      // Headers are NOT required for this simple POST type
+      // No custom headers are needed here!
       body: payload 
     }).then(response => {
-      console.log('Response received (check sheet):', response);
+      console.log('Response received (status may be opaque, check sheet):', response);
       allData.localSave("csv", "serial_position_data.csv");
     }).catch(error => {
       console.error('ERROR sending data:', error);
       allData.localSave("csv", "serial_position_data.csv");
     });
+    // --- END OF CRITICAL FIX ---
   }
 });
-
 // Select 2 random passages from the 3 available
 const selected_sets = jsPsych.randomization.sampleWithoutReplacement(NFRD_SETS, 2);
 
