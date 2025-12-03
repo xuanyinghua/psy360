@@ -374,22 +374,25 @@ function create_full_trial_sequence(set_data) {
 const jsPsych = initJsPsych({
   display_element: "jspsych-target",
   on_finish: () => {
-    // Get all data
-    const data = jsPsych.data.get();
+    console.log("=== ON FINISH TRIGGERED ===");
     
-    // Filter for just the question responses
-    const responses = data.filter({block_type: 'questions'});
+    // Get all data
+    const allData = jsPsych.data.get();
+    console.log("All data retrieved");
+    
+    // Filter for question responses
+    const questionTrials = allData.filter({block_type: 'questions'});
+    console.log("Question trials:", questionTrials.values());
     
     // Prepare data to send
     const dataToSend = {
       participant_id: 'P' + Date.now(),
       timestamp: new Date().toISOString(),
-      set1: selected_sets[0].id,
-      set2: selected_sets[1].id
+      passage_shown: selected_sets[0].id
     };
     
-    // Add all responses
-    responses.values().forEach(trial => {
+    // Add all question responses
+    questionTrials.values().forEach(trial => {
       if (trial.response) {
         Object.keys(trial.response).forEach(key => {
           dataToSend[key] = trial.response[key];
@@ -397,23 +400,26 @@ const jsPsych = initJsPsych({
       }
     });
     
+    console.log("DATA TO SEND:", dataToSend);
+    
     // Send to Google Sheets
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxrLoFHVHVa4DFMa5ksM5YaXN2o3uqQOMw7aGQHRJ8hy03T7szjmtuqS5U6lsuWhLrDaQ/exec'; // Replace with your script URL
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxrLoFHVHVa4DFMa5ksM5YaXN2o3uqQOMw7aGQHRJ8hy03T7szjmtuqS5U6lsuWhLrDaQ/exec';
+    
+    console.log("Sending to URL:", SCRIPT_URL);
     
     fetch(SCRIPT_URL, {
+      redirect: 'follow',
       method: 'POST',
-      mode: 'no-cors',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'text/plain;charset=utf-8',
       },
       body: JSON.stringify(dataToSend)
-    }).then(() => {
-      // Also save locally as backup
-      data.localSave("csv", "serial_position_data.csv");
+    }).then(response => {
+      console.log('Response received:', response);
+      allData.localSave("csv", "serial_position_data.csv");
     }).catch(error => {
-      console.error('Error sending data:', error);
-      // Save locally if sending fails
-      data.localSave("csv", "serial_position_data.csv");
+      console.error('ERROR sending data:', error);
+      allData.localSave("csv", "serial_position_data.csv");
     });
   }
 });
