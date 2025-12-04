@@ -421,10 +421,10 @@ const jsPsych = initJsPsych({
       body: JSON.stringify(dataToSend)
     }).then(response => {
       console.log('Response received (status is usually opaque):', response.type);
-      allData.localSave("csv", "serial_position_data.csv");
+      //allData.localSave("csv", "serial_position_data.csv");
     }).catch(error => {
       console.error('ERROR sending data:', error);
-      allData.localSave("csv", "serial_position_data.csv");
+      //allData.localSave("csv", "serial_position_data.csv");
     });
   }
 });
