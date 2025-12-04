@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>NFRD Serial Position Recall Experiment</title>
+  <title>PSY360 Recall Experiment</title>
 
   <!-- jsPsych CSS -->
   <link href="https://unpkg.com/jspsych@7.3.4/css/jspsych.css" rel="stylesheet" type="text/css" />
@@ -72,7 +72,7 @@ if (typeof initJsPsych === 'undefined') {
 const NFRD_SETS = [
   {
     id: 'set_A',
-    title: 'Passage A: Joe Matson Baseball Story',
+    title: 'Passage A',
     passage: `
       <div class="passage-container">
         <h3 class="text-xl font-semibold mb-3 text-blue-700">Passage A</h3>
@@ -160,7 +160,7 @@ const NFRD_SETS = [
   },
   {
     id: 'set_B',
-    title: 'Passage B: Kennedy Family Story',
+    title: 'Passage B',
     passage: `
       <div class="passage-container">
         <h3 class="text-xl font-semibold mb-3 text-blue-700">Passage B</h3>
@@ -228,7 +228,7 @@ const NFRD_SETS = [
   },
   {
     id: 'set_C',
-    title: 'Passage C: Oregon Trail Story',
+    title: 'Passage C',
     passage: `
       <div class="passage-container">
         <h3 class="text-xl font-semibold mb-3 text-blue-700">Passage C</h3>
@@ -315,10 +315,10 @@ function shuffleArray(array) {
 function create_distractor_block(set_id) {
   const math_problems = [];
   for (let i = 0; i < 10; i++) {
-    const n1 = randInt(10, 99);
-    const n2 = randInt(10, 99);
+    const n1 = randInt(1, 29);
+    const n2 = randInt(1, 29);
     math_problems.push({
-      prompt: `<p class="text-lg">What is the sum of ${n1} and ${n2}?</p>`,
+      prompt: `<p class="text-lg">What is ${n1} + ${n2}?</p>`,
       name: `math_${i}`,
       placeholder: ""
     });
@@ -328,10 +328,10 @@ function create_distractor_block(set_id) {
     type: jsPsychSurveyText,
     questions: math_problems,
     preamble: `
-      <h2 class="text-2xl font-bold text-red-600">3-Minute Distractor Task</h2>
-      <p>Solve as many math problems as you can.</p>
+      <h2 class="text-2xl font-bold text-red-600">60 Second Distractor Task</h2>
+      <p>Solve as many math problems as you can in 60 seconds.</p>
     `,
-    trial_duration: 180000,
+    trial_duration: 60000,
     data: {block_type:"distractor", set:set_id}
   };
 }
@@ -412,33 +412,32 @@ const jsPsych = initJsPsych({
     
     console.log("DATA TO SEND (JSON body):", dataToSend);
     
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwPyFw4HihXNMXW2y2xIS29G8ITQjRUzuoLEuzebHl-EOhTAjmYfq0FVJmb7h4tRvcQPw/exec';
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxOgIDga_Co-anUekk26YT3gp-50K8bmqvo9Ud2hEKk151rN78xAplh6lLgLKoS8Z2xWg/exec';
     
     console.log("Sending to URL:", SCRIPT_URL);
     
     fetch(SCRIPT_URL, {
       method: 'POST',
-      // CRITICAL: We only include the method and the body.
-      // This forces the browser to send a simple POST request.
       body: JSON.stringify(dataToSend)
     }).then(response => {
-      // In this mode, the response is usually opaque (browser can't read it)
       console.log('Response received (status is usually opaque):', response.type);
       allData.localSave("csv", "serial_position_data.csv");
     }).catch(error => {
       console.error('ERROR sending data:', error);
       allData.localSave("csv", "serial_position_data.csv");
     });
-    // --- END OF DEFINITIVE FIX ---
   }
 });
-// Select 2 random passages from the 3 available
-const selected_sets = jsPsych.randomization.sampleWithoutReplacement(NFRD_SETS, 2);
+// Select 1 random passage from the 3 available
+const selected_sets = jsPsych.randomization.sampleWithoutReplacement(NFRD_SETS, 1);
 
 const timeline = [
   {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: "<h1 class='text-3xl font-bold mb-4'>Welcome!</h1><p class='text-lg'>Press any key to continue.</p>"
+    stimulus: "<h1 class='text-3xl font-bold mb-4'>Welcome!</h1><p class='text-lg'>Press any key to continue.</p>",
+    on_start: () => { // <-- ADD THIS
+        console.log("TRIAL START: Welcome Screen");
+    }
   },
   {
     type: jsPsychHtmlKeyboardResponse,
@@ -453,11 +452,13 @@ const timeline = [
   {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: `<h2 class="text-2xl font-bold text-green-700 mb-3">Thank you!</h2><p>The experiment is complete. Your data has been saved.</p>`,
-    choices: "NO_KEYS"
+    choices: "NO_KEYS",
+    trial_duration: 1000
   }
 ];
 
 jsPsych.run(timeline);
+console.log("JSPSYCH RUN INITIATED");
 </script>
 </body>
 </html>

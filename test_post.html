@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Apps Script Connectivity Test</title>
+</head>
+<body>
+    <h1>Apps Script Connectivity Test</h1>
+    <p>Click the button below to send a simple POST request to your script.</p>
+    <button id="sendData" onclick="sendTestData()">Send Test Data</button>
+    
+    <div id="status" style="margin-top: 20px; color: blue;">Status: Ready</div>
+
+    <script>
+        // **!!! REPLACE THIS URL !!!** // Use your actual deployed Apps Script URL ending in /exec
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxv27uBvG9B1u0fmXfGoetnp8bmQjL_1cHBUBy-cmk8dOVi-dR3kxMT7bNXVm7-XwPFug/exec';
+        
+        function sendTestData() {
+            const statusDiv = document.getElementById('status');
+            statusDiv.textContent = "Status: Sending...";
+            statusDiv.style.color = 'orange';
+
+            const testData = {
+                test_id: 'Test_' + Date.now(),
+                message: 'Hello World from Simple HTML',
+                date: new Date().toISOString()
+            };
+
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                // This is the simplest, most resilient POST configuration
+                body: JSON.stringify(testData)
+            })
+            .then(response => {
+                // In no-cors mode, we can't read the actual status, 
+                // but a successful fetch attempt means the request left the browser.
+                statusDiv.textContent = `Status: Request sent. Check Apps Script logs for execution. Response type: ${response.type}`;
+                statusDiv.style.color = 'green';
+            })
+            .catch(error => {
+                statusDiv.textContent = `Status: Failed to send request! Error: ${error}`;
+                statusDiv.style.color = 'red';
+                console.error("Fetch error:", error);
+            });
+        }
+    </script>
+</body>
+</html>
